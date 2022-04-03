@@ -1,5 +1,9 @@
 # Integral Drive
 
+<div align="center">
+    <img alt="Integral Drive Logo" src="integral-drive.png" />
+</div>
+
 This project provides a command line interface (CLI) for checking the integrity of a folder located in a hard drive. The tool recursively walks through a path, skipping some folders (not considered valuable in a backup), and computing the CRC32C checksum of each file. The output is a text file with one path/checksum entry per line. The given root path is removed from the paths and entries are alphabetically sorted, so that you can easily compare folders located on two different hard drives with the tool of your choice such as `diff`, `git`, [Meld](https://meldmerge.org/). The log can be saved into a file in addition to the standard output and contains info, warnings, and errors.
 
 ## Use Cases
