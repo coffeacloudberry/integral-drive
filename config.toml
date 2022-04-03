@@ -1,0 +1,12 @@
+ignore = [
+    ".idea", # JetBrains stuff
+    ".vscode", # Visual Studio Code stuff
+    "node_modules", # JavaScript packages
+    "venv", # Python virtual environment
+    "__pycache__", # Python cache
+    ".mypy_cache", # Python cache
+    ".pytest_cache", # Python cache
+    "htmlcov", # Python cache
+    ".scannerwork", # Sonar reports
+    ".vercel", # Vercel stuff
+]

@@ -1,0 +1,13 @@
+FROM fedora:33
+
+RUN ldd --version
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+RUN dnf -y install gcc rpm-build rpm-devel rpmlint make coreutils diffutils patch rpmdevtools && \
+    cargo install cargo-rpm
+
+COPY . .
+RUN cargo rpm build && \
+    mkdir -p releases/ && \
+    mv target/release/rpmbuild/RPMS/x86_64/ releases/rpm/

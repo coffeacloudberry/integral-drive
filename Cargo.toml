@@ -1,0 +1,41 @@
+[package]
+name = "integral-drive"
+description = "Recursively compute checksums on files"
+version = "0.1.0"
+edition = "2021"
+license-file = "LICENSE.md"
+authors = ["coffeacloudberry"]
+documentation = "https://github.com/coffeacloudberry/integral-drive/main/master/README.md"
+homepage = "https://github.com/coffeacloudberry/integral-drive"
+repository = "https://github.com/coffeacloudberry/integral-drive"
+readme = "README.md"
+keywords = ["integrity", "checksum"]
+categories = ["command-line-utilities", "filesystem"]
+publish = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "3.1.6", features = ["derive"] }
+walkdir = "2"
+crc32fast = "1.3.2"
+chrono = "0.4"
+pbr = "1.0.3"
+log = "0.4.14"
+clap-verbosity-flag = "1.0.0"
+simplelog = "0.11.2"
+toml = "0.5.8"
+serde = { version = "1.0", features = ["derive"] }
+lazy_static = "1.4.0"
+
+[package.metadata.rpm]
+package = "integral-drive"
+
+[package.metadata.rpm.cargo]
+buildflags = ["--release"]
+
+[package.metadata.rpm.targets]
+integral-drive = { path = "/usr/bin/integral-drive" }
+
+[package.metadata.deb]
+section = "utility"

@@ -1,0 +1,18 @@
+FROM fedora:32
+
+RUN ldd --version
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+RUN dnf -y install gcc rpm-build rpm-devel rpmlint make coreutils diffutils patch rpmdevtools dpkg dpkg-dev && \
+    cargo install cargo-rpm && \
+    cargo install cargo-deb
+
+COPY . .
+# The Debian package can be built in the Fedora image.
+# The oldest image is used to build the Debian package to make sure the GLIBC is compatible.
+RUN cargo rpm build && \
+    cargo deb && \
+    mkdir -p releases/ && \
+    mv target/release/rpmbuild/RPMS/x86_64/ releases/rpm/ && \
+    mv target/debian/ releases/deb/
