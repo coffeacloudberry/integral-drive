@@ -15,9 +15,10 @@ This project provides a command line interface (CLI) for checking the integrity 
 
 **Notices:**
 
-* This tool only checks unintentional changes. CRC32C is fast, but not recommended for checking malicious change,
+* CRC32C is fast, but not recommended for checking malicious change,
 * For detecting intrusion on your system, [AIDE](https://aide.github.io/) is probably a good choice,
-* This tool has only been tested on a GNU/Linux operating system.
+* This tool has only been tested on a GNU/Linux operating system,
+* This tool does not copy anything, [`rsync`](https://linux.die.net/man/1/rsync) can be used for selectively sync folders.
 
 ## Usage
 

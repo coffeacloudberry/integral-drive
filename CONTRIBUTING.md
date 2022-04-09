@@ -5,7 +5,6 @@ So glad you land on this page! Feel free to share any idea. Your contribution is
 ## Ideas
 
 * Add unit tests running on different distributions,
-* Add the capability to copy and do the copy & check in one run to optimize read access,
 * Add manual to `man`,
 * Add cryptographically safe checksums,
 * Any idea?
