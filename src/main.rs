@@ -77,6 +77,10 @@ struct Cli {
     /// Example: https://github.com/coffeacloudberry/integral-drive/blob/main/config.toml
     #[clap(short, long, parse(from_os_str), name("CONFIG FILENAME"))]
     config: Option<PathBuf>,
+
+    /// Overwrite output file if already existing
+    #[clap(short, long, takes_value(false))]
+    force: bool,
 }
 
 /// Return false if the element is blacklisted.
@@ -246,7 +250,11 @@ fn setup_log(output_path: Option<PathBuf>) -> Result<(), log::SetLoggerError> {
 }
 
 /// Check arguments and return a list of file names as reports. Do not write anything.
-fn process_args(arg_input: &Vec<PathBuf>, arg_output: &Option<Vec<PathBuf>>) -> Vec<PathBuf> {
+fn process_args(
+    arg_input: &Vec<PathBuf>,
+    arg_output: &Option<Vec<PathBuf>>,
+    is_force: bool,
+) -> Vec<PathBuf> {
     for input in arg_input {
         if !input.is_dir() {
             eprintln!("Input path must be a directory");
@@ -273,7 +281,7 @@ fn process_args(arg_input: &Vec<PathBuf>, arg_output: &Option<Vec<PathBuf>>) -> 
             eprintln!("Output path cannot be directory, please add a file name");
             std::process::exit(1);
         }
-        if output.exists() {
+        if output.exists() && !is_force {
             let output_path_str = PathBuf::from(&output)
                 .into_os_string()
                 .into_string()
@@ -296,13 +304,28 @@ fn create_pb(multi_pb: &MultiBar<Stdout>, total_entries: u64) -> ProgressBar<Pip
     pb
 }
 
+/// Open a file, truncate the file if forced
+fn open_output_file(path: &PathBuf, is_force: bool) -> io::Result<File> {
+    match is_force {
+        true => fs::OpenOptions::new()
+            .write(true)
+            .create(true)
+            .truncate(true)
+            .open(&path),
+        false => fs::OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .open(&path),
+    }
+}
+
 fn main() -> Result<(), Box<dyn Error>> {
     let args = Cli::parse();
     if args.input.len() == 0 {
         eprintln!("Missing input, try --help");
         std::process::exit(1);
     }
-    let output_path = process_args(&args.input, &args.output);
+    let output_path = process_args(&args.input, &args.output, args.force);
 
     // setup log and optionally create a common log file
     setup_log(args.log_file)?;
@@ -313,7 +336,35 @@ fn main() -> Result<(), Box<dyn Error>> {
     let n_pbs = args.input.len();
     for (pos, output) in output_path.iter().enumerate() {
         let input = PathBuf::from(&args.input[pos]);
-        let mut output_buf = File::create(&output)?;
+
+        // check read access now to avoid creating an empty output file
+        if let Err(e) = fs::read_dir(&input) {
+            if e.kind() == io::ErrorKind::PermissionDenied {
+                log::error!(
+                    "Failed to open input path. {}: `{}'",
+                    e.to_string(),
+                    input.to_str().unwrap()
+                );
+                continue;
+            }
+            panic!("{:?}", e);
+        }
+
+        let mut output_buf = match open_output_file(&output, args.force) {
+            Ok(p) => p,
+            Err(e) => {
+                if e.kind() == io::ErrorKind::PermissionDenied {
+                    log::error!(
+                        "Failed to create output file. {}: `{}'",
+                        e.to_string(),
+                        output.to_str().unwrap()
+                    );
+                    continue;
+                }
+                panic!("{:?}", e);
+            }
+        };
+
         let input_path = fs::canonicalize(&input)?;
         let total_entries = get_walk_dir(&input_path).count();
         let mut pb = create_pb(&multi_pb, total_entries as u64);
