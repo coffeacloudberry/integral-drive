@@ -30,3 +30,4 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %{_bindir}/*
+%{_mandir}/man1/integral-drive.1*

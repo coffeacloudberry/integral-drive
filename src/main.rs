@@ -57,6 +57,8 @@ lazy_static::lazy_static! {
 /// The CRC32C is not cryptographically safe but very fast, your CPU probably have
 /// instruction-level support (SSE 4.2). It is not collision-resistant but still have good error
 /// detection capabilities. The CRC32C is the default checksum used at the block level on Btrfs.
+///
+/// This tool does not copy anything, use `cp` or `rsync` beforehand.
 #[derive(Parser)]
 #[clap(version, color = clap::ColorChoice::Never)]
 struct Cli {

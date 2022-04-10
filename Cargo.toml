@@ -1,7 +1,7 @@
 [package]
 name = "integral-drive"
 description = "Recursively compute checksums on files"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 license-file = "LICENSE.md"
 authors = ["coffeacloudberry"]
@@ -37,5 +37,11 @@ buildflags = ["--release"]
 [package.metadata.rpm.targets]
 integral-drive = { path = "/usr/bin/integral-drive" }
 
+[package.metadata.rpm.files]
+"../man1/integral-drive.1.gz" = { path = "/usr/share/man/man1/integral-drive.1.gz", mode = "644" } # %{_mandir}/man1/integral-drive.1*
+
 [package.metadata.deb]
 section = "utility"
+assets = [
+    ["man1/*", "usr/share/man/man1/", "644" ],
+]

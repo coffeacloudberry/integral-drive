@@ -8,7 +8,7 @@ This project provides a command line interface (CLI) for checking the integrity 
 
 ## Use Cases
 
-* Cloud file storage providers may offer top security features, and comply with many standards, but may lack data integrity under specific conditions such as poor network connection. Lost files can be detected by comparing the original local folder to the fetched folder,
+* Top security cloud file storage providers may lack data integrity under specific conditions such as poor network connection. Lost files can be detected by comparing the original local folder to the fetched folder,
 * Cloud file storage providers may rename or duplicate files containing special characters in the file name. A copy from one drive to another may remove file metadata, such as the creation/modification date. In those cases, the checksum shall not change,
 * Some filesystems do not have integrity check, or do not handle special characters, or may corrupt files without notice. A copied file may be lost if the hard drive has been removed improperly and not actually flushed. Consequently, integrity check is useful, especially on your backup since you realise you have lost files when it is too late,
 * You or your applications/system may use symbolic links. If you make the mistake to back up only those links, and the actual files are lost, then you will only find broken links. This tool explicitly tells you which files/folders are symbolic links so that you can act accordingly.
@@ -67,6 +67,8 @@ It is possible to provide multiple input paths that would be processed in parall
 ## Install
 
 This tool has no dependencies except GLIBC 2.31+ that should already be in your system.
+
+Once installed you can get help with `integral-drive --help` or `man integral-drive` for a more detailed and completely offline documentation generated from [integral-drive.1.md](integral-drive.1.md).
 
 ### Fedora 64-bit (x86_64)
 

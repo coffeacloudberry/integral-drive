@@ -1,4 +1,9 @@
-release:
+doc:
+	mkdir -p man1
+	pandoc --standalone --to man integral-drive.1.md -o man1/integral-drive.1
+	gzip -f man1/integral-drive.1
+
+release: doc
 	for fc in fc32 fc33 fc34 ; do \
 		docker image build -f Dockerfile_$$fc -t integral-drive-$$fc . && \
 		docker rm -f integral-drive-$$fc ; \
