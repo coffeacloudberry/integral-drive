@@ -16,7 +16,7 @@ publish = false
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = { version = "3.1.6", features = ["derive"] } # License Apache-2.0: https://github.com/clap-rs/clap/blob/v3.1.8/LICENSE-APACHE
+clap = { version = "3.1.18", features = ["derive"] } # License Apache-2.0: https://github.com/clap-rs/clap/blob/v3.1.8/LICENSE-APACHE
 walkdir = "2" # Public domain: https://github.com/BurntSushi/walkdir/blob/master/UNLICENSE
 crc32fast = "1.3.2" # Dual MIT and Apache-2.0: https://github.com/srijs/rust-crc32fast
 chrono = "0.4" # Dual MIT and Apache-2.0: https://github.com/chronotope/chrono/blob/main/LICENSE.txt
