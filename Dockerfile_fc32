@@ -1,4 +1,4 @@
-FROM fedora:32
+FROM fedora:37
 
 RUN ldd --version
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
