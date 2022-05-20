@@ -24,7 +24,7 @@ pbr = "1.0.3" # MIT: https://github.com/a8m/pb/blob/master/LICENSE.md
 log = "0.4.14" # Dual MIT and Apache-2.0: https://github.com/rust-lang/log
 clap-verbosity-flag = "1.0.0" # Dual MIT and Apache-2.0: https://github.com/rust-cli/clap-verbosity-flag
 simplelog = "0.12.0" # Dual MIT and Apache-2.0: https://github.com/drakulix/simplelog.rs
-toml = "0.5.8" # Dual MIT and Apache-2.0: https://github.com/alexcrichton/toml-rs
+toml = "0.5.9" # Dual MIT and Apache-2.0: https://github.com/alexcrichton/toml-rs
 serde = { version = "1.0", features = ["derive"] } # Dual MIT and Apache-2.0: https://github.com/serde-rs/serde
 lazy_static = "1.4.0" # Dual MIT and Apache-2.0: https://github.com/rust-lang-nursery/lazy-static.rs
 
