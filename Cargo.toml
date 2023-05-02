@@ -1,7 +1,7 @@
 [package]
 name = "integral-drive"
 description = "Recursively compute checksums on files"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 license-file = "LICENSE.md"
 authors = ["coffeacloudberry"]
@@ -16,16 +16,16 @@ publish = false
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = { version = "3.1.6", features = ["derive"] } # License Apache-2.0: https://github.com/clap-rs/clap/blob/v3.1.8/LICENSE-APACHE
-walkdir = "2" # Public domain: https://github.com/BurntSushi/walkdir/blob/master/UNLICENSE
+clap = { version = "4.2.5", features = ["derive"] } # License Apache-2.0: https://github.com/clap-rs/clap/blob/v4.2.5/LICENSE-APACHE
+walkdir = "2.3.3" # Public domain: https://github.com/BurntSushi/walkdir/blob/master/UNLICENSE
 crc32fast = "1.3.2" # Dual MIT and Apache-2.0: https://github.com/srijs/rust-crc32fast
-chrono = "0.4" # Dual MIT and Apache-2.0: https://github.com/chronotope/chrono/blob/main/LICENSE.txt
-pbr = "1.0.3" # MIT: https://github.com/a8m/pb/blob/master/LICENSE.md
-log = "0.4.14" # Dual MIT and Apache-2.0: https://github.com/rust-lang/log
-clap-verbosity-flag = "1.0.0" # Dual MIT and Apache-2.0: https://github.com/rust-cli/clap-verbosity-flag
-simplelog = "0.11.2" # Dual MIT and Apache-2.0: https://github.com/drakulix/simplelog.rs
-toml = "0.5.8" # Dual MIT and Apache-2.0: https://github.com/alexcrichton/toml-rs
-serde = { version = "1.0", features = ["derive"] } # Dual MIT and Apache-2.0: https://github.com/serde-rs/serde
+chrono = "0.4.24" # Dual MIT and Apache-2.0: https://github.com/chronotope/chrono/blob/main/LICENSE.txt
+pbr = "1.0.4" # MIT: https://github.com/a8m/pb/blob/master/LICENSE.md
+log = "0.4.17" # Dual MIT and Apache-2.0: https://github.com/rust-lang/log
+clap-verbosity-flag = "2.0.1" # Dual MIT and Apache-2.0: https://github.com/rust-cli/clap-verbosity-flag
+simplelog = "0.12.1" # Dual MIT and Apache-2.0: https://github.com/drakulix/simplelog.rs
+toml = "0.7.3" # Dual MIT and Apache-2.0: https://github.com/toml-rs/toml/tree/main/crates/toml
+serde = { version = "1.0.160", features = ["derive"] } # Dual MIT and Apache-2.0: https://github.com/serde-rs/serde
 lazy_static = "1.4.0" # Dual MIT and Apache-2.0: https://github.com/rust-lang-nursery/lazy-static.rs
 
 [package.metadata.rpm]

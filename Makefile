@@ -4,7 +4,7 @@ doc:
 	gzip -f man1/integral-drive.1
 
 release: doc
-	for fc in fc32 fc33 fc34 ; do \
+	for fc in fc32 fc33 fc34 fc35 fc36 fc37 fc38 ; do \
 		docker image build -f Dockerfile_$$fc -t integral-drive-$$fc . && \
 		docker rm -f integral-drive-$$fc ; \
 		docker run --name integral-drive-$$fc -td integral-drive-$$fc && \

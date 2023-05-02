@@ -54,7 +54,7 @@ lazy_static::lazy_static! {
 /// alphabetically sorted, so that you can easily compare folders located on two different hard
 /// drives with the tool of your choice such as `diff` or Meld. The log is saved into a file.
 ///
-/// The CRC32C is not cryptographically safe but very fast, your CPU probably have
+/// The CRC32C is not cryptographically safe but very fast, your CPU probably has
 /// instruction-level support (SSE 4.2). It is not collision-resistant but still have good error
 /// detection capabilities. The CRC32C is the default checksum used at the block level on Btrfs.
 ///
@@ -63,25 +63,25 @@ lazy_static::lazy_static! {
 #[clap(version, color = clap::ColorChoice::Never)]
 struct Cli {
     /// Root path to start from, you can provide one or many paths
-    #[clap(short, long, parse(from_os_str), name("INPUT PATH"))]
+    #[arg(short, long, value_name = "INPUT PATH")]
     input: Vec<PathBuf>,
 
     /// Path to the report file, none or as many as input paths
-    #[clap(short, long, parse(from_os_str), name("OUTPUT FILENAME"))]
+    #[arg(short, long, value_name = "OUTPUT FILENAME")]
     output: Option<Vec<PathBuf>>,
 
     /// Path to the log file, none or one file
-    #[clap(short, long, parse(from_os_str), name("LOG FILENAME"))]
+    #[arg(short, long, value_name = "LOG FILENAME")]
     log_file: Option<PathBuf>,
 
     /// Path to the config file in TOML format. If missing, all folders will be processed
     ///
     /// Example: https://github.com/coffeacloudberry/integral-drive/blob/main/config.toml
-    #[clap(short, long, parse(from_os_str), name("CONFIG FILENAME"))]
+    #[arg(short, long, value_name = "CONFIG FILENAME")]
     config: Option<PathBuf>,
 
     /// Overwrite output file if already existing
-    #[clap(short, long, takes_value(false))]
+    #[arg(short, long, action)]
     force: bool,
 }
 

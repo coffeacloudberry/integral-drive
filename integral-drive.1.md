@@ -1,4 +1,4 @@
-% INTEGRAL-DRIVE(1) Version 0.2.0 | Integral Drive Manual
+% INTEGRAL-DRIVE(1) Version 0.3.0 | Integral Drive Manual
 
 NAME
 ====
@@ -15,7 +15,7 @@ DESCRIPTION
 
 This tool is intended for checking the integrity of a directory located in a hard drive. The tool recursively walks through a directory, skipping some directories not considered valuable in a backup, and computing the CRC32C checksum of each file. The output is a text file with one path/checksum entry per line. The given root path is removed from the paths and entries are alphabetically sorted, so that you can easily compare folders located on two different hard drives with the tool of your choice such as diff or Meld. The log is saved into a file.
 
-The CRC32C is not cryptographically safe but very fast, your CPU probably have instruction-level support -- SSE 4.2. It is not collision-resistant but still have good error detection capabilities. The CRC32C is the default checksum used at the block level on Btrfs.
+The CRC32C is not cryptographically safe but very fast, your CPU probably has instruction-level support -- SSE 4.2. It is not collision-resistant but still have good error detection capabilities. The CRC32C is the default checksum used at the block level on Btrfs.
 
 APPLICATION USAGE
 =================
@@ -98,7 +98,7 @@ Bugs can be reported and filed at https://github.com/coffeacloudberry/integral-d
 COPYRIGHT
 =========
 
-Copyright © 2022 coffeacloudberry. Hippocratic License 3.0
+Copyright © 2023 coffeacloudberry. Hippocratic License 3.0
 
 https://firstdonoharm.dev
 https://raw.githubusercontent.com/coffeacloudberry/integral-drive/main/LICENSE.pdf

@@ -11,4 +11,4 @@ Please report security vulnerabilities by email. The email address is my PGP pub
 
 ## PGP Key
 
-Here is my [PGP public key](https://keybase.io/happydude/pgp_keys.asc), the ID/fingerprint is `DFFF34860D361C52`.
+Here is my [PGP public key](https://keys.openpgp.org/pks/lookup?op=get&options=mr&search=0xFFD0B3DDAD69CB71BAE13B1DDFFF34860D361C52), the ID/fingerprint is `DFFF34860D361C52`.
